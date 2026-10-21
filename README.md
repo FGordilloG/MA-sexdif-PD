@@ -4,8 +4,8 @@ Meta-analysis of sex-specific differential expression in single-nucleus RNA-seq 
 
 This repository contains the full analysis code used in the paper, in the order in which it was executed. Results can be explored interactively in the **PATOSS** web application ([link]).
 
-- **Paper:** [citation / DOI]
-- **Archived release:** [Zenodo DOI]
+- **Paper:** https://doi.org/10.1101/2024.12.20.628852
+- **Archived release:** https://doi.org/10.5281/zenodo.23540076
 - **Data:** all datasets are public. Accession numbers, sample sizes and donor metadata are listed in Table 1 of the paper.
 
 ---
@@ -20,7 +20,7 @@ Rscript 1.QC.R GSE157783 <ncells> <UMIs> <ngenes> <%mito>
 
 The parameter values used for every dataset (quality control thresholds, clustering parameters, number of principal components and model covariates) are reported in Supplementary Table [SX] of the paper.
 
-### Stage 1 — Individual analysis (run once per dataset)
+### Stage 1 - Individual analysis (run once per dataset)
 
 | # | Script | What it does | Arguments |
 |---|---|---|---|
@@ -32,7 +32,7 @@ The parameter values used for every dataset (quality control thresholds, cluster
 | 6 | `6.Cell_type_annot.R` | Cell type annotation by consensus of four methods (SingleR, CHETAH, SCINA, BRETIGEA) | `study_ID sce_ref_path genelist_path recap` |
 | 7 | `7.Plot_marker_expression.R` | Verification of the annotation through the expression of canonical marker genes | `study_ID ncols_plot marker_genes` |
 
-### Stage 2 — Differential analysis (run per dataset and cell type)
+### Stage 2 - Differential analysis (run per dataset and cell type)
 
 Two branches run in parallel on the annotated objects produced in stage 1.
 
@@ -44,13 +44,13 @@ Two branches run in parallel on the annotated objects produced in stage 1.
 
 No inference is drawn from the individual datasets at this stage. Each analysis provides an effect size (logFC) and its standard error, which are the input of the meta-analysis.
 
-### Stage 3 — Integration
+### Stage 3 - Integration
 
 | # | Script | What it does | Arguments |
 |---|---|---|---|
-| 9 | `9.Meta-analysis.R` | Random-effects meta-analysis (DerSimonian–Laird) of the gene-level and pathway-level results, per cell type and region, with Benjamini–Hochberg correction and diagnostic tests | see header of the script |
+| 9 | `9.Meta-analysis.R` | Random-effects meta-analysis (DerSimonian-Laird) of the gene-level and pathway-level results, per cell type and region, with Benjamini–Hochberg correction and diagnostic tests | see header of the script |
 
-### Stage 4 — Downstream analyses (run on the meta-analysis results)
+### Stage 4 - Downstream analyses (run on the meta-analysis results)
 
 | # | Script | What it does | Arguments |
 |---|---|---|---|
@@ -66,7 +66,7 @@ No inference is drawn from the individual datasets at this stage. Each analysis 
 
 Each dataset was processed and analysed separately, and the variability between studies is accounted for by the random-effects meta-analysis, so no correction across datasets is required by the design.
 
-Within datasets, batch correction was nevertheless tested during the development of the pipeline, using the Harmony implementation provided in `Batch_correction.R`. It did not produce relevant changes in the resulting embeddings, clustering or cell type annotation, and it was therefore left out of the final pipeline.
+Within datasets, batch correction was nevertheless tested during the development of the pipeline, using the Harmony implementation provided in `Batch_correction.R`; however, no appreciable differences were observed in the resulting embeddings and cell type annotation and it was therefore left out of the final pipeline.
 
 The function is kept in the repository, and is still reachable through the `batch_correction` argument of `4.Dim_reduct.R`, for two reasons: so that the code can be reused in settings where correction is needed, and so that this decision can be re-examined by anyone wishing to reproduce or extend the analysis.
 
@@ -74,10 +74,10 @@ The function is kept in the repository, and is still reachable through the `batc
 
 ## Requirements
 
-Analyses were run in R [version]. The version of every package used is listed in Supplementary Table [SY] of the paper and in `sessionInfo.txt`.
+Analyses were run in R 3.1. The version of every package used is listed in the last Supplementary Table 5 of the paper.
 
-Main packages: SingleCellExperiment, DropletUtils, scater, scran, bluster, scDblFinder, uwot, PCAtools, SingleR, CHETAH, SCINA, BRETIGEA, MAST, metafor, hipathia, topGO, GOSemSim, simplifyEnrichment, STRINGdb, iTALK, OmnipathR, harmony, shiny.
+Main packages: SingleCellExperiment, scater, scran, scDblFinder, MAST, metafor, hipathia, topGO, GOSemSim, simplifyEnrichment, iTALK.
 
 ## Contact
 
-Fernando Gordillo González — [email / institution]
+Fernando Gordillo González - fgordillo@cipf.es / Centro de Investigación Príncipe Felipe
