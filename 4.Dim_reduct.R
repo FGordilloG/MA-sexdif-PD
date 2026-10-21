@@ -65,7 +65,7 @@ dev.off()
 
 #### Batch correction ####
 if (!is.na(args[2])){
-  source("other/Batch_correction.R")
+  source("./Batch_correction.R")
   covariates=strsplit(args[3], ",")[[1]]
   sce=batch_correction(sce,covariates)
 }
