@@ -2,7 +2,7 @@
 
 Meta-analysis of sex-specific differential expression in single-nucleus RNA-seq datasets of post-mortem substantia nigra pars compacta (SN) and cortical (CT) samples from Parkinson's disease (PD) patients and controls.
 
-This repository contains the full analysis code used in the paper, in the order in which it was executed. Results can be explored interactively in the **PATOSS** web application ([link]).
+This repository contains the full analysis code used in the paper, in the order in which it was executed. Results can be explored interactively in the [**PATOSS**](https://bioinfo.cipf.es/cbl-atlas-pd/) web application.
 
 - **Paper:** https://doi.org/10.1101/2024.12.20.628852
 - **Archived release:** https://doi.org/10.5281/zenodo.23540076
